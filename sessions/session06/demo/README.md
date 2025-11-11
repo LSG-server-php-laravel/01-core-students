@@ -1,79 +1,73 @@
 # Laravel Environment Configuration
 
-## Instalación de Laravel
+Esta sesión cubre la instalación y configuración de Laravel usando Docker con Laravel Sail, una herramienta que proporciona un entorno de desarrollo completo y consistente.
 
-Documentación oficial: <https://laravel.com/docs/12.x/installation>
+## 📚 Contenido de la sesión
 
-Comando alternativo a `laravel new my-project`:
+### 1. [Instalación de Laravel y Sail](./01-installation.md)
 
-```bash
-composer create-project laravel/laravel my-project
-```
+- Crear un proyecto Laravel
+- Instalar Laravel Sail
+- Seleccionar servicios (MySQL, Redis, Mailpit, Selenium)
+- Ejecutar y gestionar contenedores Docker
+- Comandos útiles de Sail
 
-Para ejecutar Laravel en local se puede usar `php artisan serve`, sin embargo, utilizaremos un enfoque más profesional mediante contenedores Docker con el paquete **Laravel Sail**, que proporciona un entorno de desarrollo completo y consistente.
+### 2. [Configuración en Windows (WSL2 + Git Bash)](./02-setup-windows.md)
 
-## Laravel Sail
+- Instalar WSL2 con Ubuntu
+- Configurar Docker Desktop
+- Trabajar con Sail desde Git Bash
+- Solución de errores comunes
 
-Documentación oficial: <https://laravel.com/docs/12.x/sail>
+### 3. [Añadir phpMyAdmin](./03-phpmyadmin.md)
 
-### Instalación de Sail
+- Configuración de phpMyAdmin en docker-compose.yml
+- Acceso y uso de phpMyAdmin
 
-```bash
-php artisan sail:install
-```
+### 4. [Configurar PHP CS Fixer](./04-phpcs.md)
 
-### Selección de servicios
+- Instalación de PHP CS Fixer
+- Configuración en el proyecto
 
-Al ejecutar el comando anterior, se te preguntará qué servicios deseas instalar:
+## 🎯 Objetivos
 
-```text
-Which services would you like to install? [mysql]:
-[0] mysql
-[1] pgsql
-[2] mariadb
-[3] redis
-[4] memcached
-[5] meilisearch
-[6] minio
-[7] mailpit
-[8] selenium
-```
+Al finalizar esta sesión, serás capaz de:
 
-Selecciona los servicios que necesites, para estas demostraciones usaremos:
+- ✅ Crear y configurar un proyecto Laravel con Sail
+- ✅ Trabajar con contenedores Docker para desarrollo
+- ✅ Resolver problemas comunes en Windows
+- ✅ Usar phpMyAdmin para gestionar la base de datos
+- ✅ Mantener un código limpio con PHP CS Fixer
 
-```text
-> 0,3,7,8
-```
+## 🚀 Inicio rápido
 
-Esto instalará: MySQL, Redis, Mailpit y Selenium.
-
-## Añadir phpMyAdmin a Docker Sail
-
-Para agregar phpMyAdmin al archivo `docker-compose.yml` de Sail, añade el siguiente servicio:
-
-```yaml
-phpmyadmin:
-  image: 'phpmyadmin:latest'
-  ports:
-    - '${FORWARD_PHPMYADMIN_PORT:-8080}:80'
-  environment:
-    PMA_HOST: mysql
-    PMA_PORT: 3306
-    PMA_USER: '${DB_USERNAME}'
-    PMA_PASSWORD: '${DB_PASSWORD}'
-    MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-  networks:
-    - sail
-  depends_on:
-    - mysql
-```
-
-Una vez configurado, podrás acceder a phpMyAdmin en `http://localhost:8080`.
-
-## Configuración de PHP CS Fixer
-
-Será necesario configurar de nuevo el PHPCS. Además, se debe configurar el PHPCSFixer. Para instalar el PHPFixer y validar la sintaxis del código, instálalo globalmente:
+Si ya tienes todo configurado y solo quieres recordar los comandos básicos:
 
 ```bash
-composer global require friendsofphp/php-cs-fixer
+# Crear proyecto
+composer create-project laravel/laravel mi-proyecto
+cd mi-proyecto
+
+# Instalar Sail
+composer require laravel/sail --dev
+php artisan sail:install --with=mysql,redis,mailpit,selenium
+
+# Iniciar contenedores
+vendor/bin/sail up -d
+
+# Ver estado
+vendor/bin/sail ps
+
+# Acceder a la aplicación
+# http://localhost
 ```
+
+## 📖 Documentación oficial
+
+- [Laravel Documentation](https://laravel.com/docs/12.x)
+- [Laravel Sail](https://laravel.com/docs/12.x/sail)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+---
+
+**💡 Tip:** Empieza por el [documento de instalación](./01-installation.md) si es tu primera vez con Laravel Sail.
