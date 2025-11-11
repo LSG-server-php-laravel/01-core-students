@@ -22,7 +22,7 @@
 
 3. **Reinicia tu ordenador** (es necesario para que WSL2 se active)
 
-4. Después del reinicio, abre la aplicación **Ubuntu** desde el menú inicio
+4. Después del reinicio, abre la aplicación **Ubuntu** desde el menú inicio de **Windows**
    - La primera vez te pedirá crear un usuario y contraseña de Linux
    - Completa la configuración inicial
 
@@ -34,14 +34,55 @@
 
 3. En la sección **General**, asegúrate de que la opción **"Use the WSL 2 based engine"** esté activada
 
+   ![Docker Desktop - General](./assets/screenshot-docker-1.png)
+
 4. En la sección **Resources → WSL Integration**:
 
    - Activa **"Enable integration with my default WSL distro"**
    - Activa **Ubuntu** en la lista de distribuciones
+     ![Docker Desktop - WSL Integration](./assets/screenshot-docker-2.png)
 
 5. Aplica los cambios y reinicia Docker Desktop
 
-#### Paso 3: Ejecutar Sail desde Git Bash
+#### Paso 3: Ejecutar Sail
+
+Tienes dos opciones para trabajar con Laravel Sail en Windows:
+
+##### Opción A: Desde la terminal de Ubuntu (WSL2)
+
+1. Abre la aplicación **Ubuntu** desde el menú inicio de Windows
+
+2. Navega a tu proyecto Laravel (los archivos dentro de la C: de Windows están en `/mnt/c/`):
+
+   ```bash
+   cd /mnt/c/Users/TuUsuario/ruta/a/tu/proyecto
+   ```
+
+   Por ejemplo:
+
+   ```bash
+   cd /mnt/c/Users/Juan/Documents/mi-proyecto-laravel
+   ```
+
+3. Ejecuta Sail:
+
+   ```bash
+   ./vendor/bin/sail up -d
+   ```
+
+4. Verifica que los contenedores están corriendo:
+
+   ```bash
+   ./vendor/bin/sail ps
+   ```
+
+> **Ventajas de esta opción:**
+>
+> - Mejor rendimiento y compatibilidad con Docker
+> - Experiencia más cercana al entorno de producción
+> - Recomendado si vas a trabajar frecuentemente con Laravel
+
+##### Opción B: Desde Git Bash en Windows
 
 1. Abre **Git Bash** en la carpeta de tu proyecto (clic derecho → "Git Bash Here")
 
@@ -61,27 +102,58 @@
    bash vendor/bin/sail up -d
    ```
 
+4. Verifica que los contenedores están corriendo:
+
+   ```bash
+   vendor/bin/sail ps
+   ```
+
+> **Ventajas de esta opción:**
+>
+> - Más cómodo si prefieres trabajar en el entorno Windows
+> - No necesitas cambiar de terminal constantemente
+> - Funciona bien para proyectos pequeños
+
 #### Verificar que todo funciona
 
-```bash
-# Ver que los contenedores están corriendo
-vendor/bin/sail ps
+Independientemente de la opción que elijas, una vez que los contenedores estén corriendo:
 
+```bash
 # Acceder a la aplicación
 # Abre tu navegador en: http://localhost
 ```
 
-> **Recomendaciones:**
->
-> - **Alias:** Para no escribir `vendor/bin/sail` cada vez, añade este alias a tu archivo `~/.bashrc` (en tu carpeta home de Windows):
->
->   ```bash
->   alias sail='bash vendor/bin/sail'
->   ```
->
->   Después de guardarlo, reinicia Git Bash y ya podrás usar simplemente `sail up -d`
->
-> - **VS Code:** Puedes trabajar normalmente abriendo la carpeta del proyecto desde Windows. No necesitas configuraciones especiales.
+Deberías ver la página de bienvenida de Laravel.
+
+#### Recomendaciones según la opción elegida
+
+**Si usas Ubuntu (Opción A):**
+
+- Crea un alias en tu `~/.bashrc` de Ubuntu:
+
+  ```bash
+  alias sail='./vendor/bin/sail'
+  ```
+
+- Usa VS Code con la extensión **WSL** para editar archivos directamente desde Ubuntu
+
+**Si usas Git Bash (Opción B):**
+
+- Crea un alias en tu `~/.bashrc` de Windows:
+
+  ```bash
+  alias sail='bash vendor/bin/sail'
+  ```
+
+- Puedes trabajar con VS Code normalmente abriendo la carpeta del proyecto desde Windows
+
+Después de crear el alias, reinicia la terminal y podrás usar simplemente:
+
+```bash
+sail up -d
+sail ps
+sail down
+```
 
 ### Error: "Docker is not running"
 
