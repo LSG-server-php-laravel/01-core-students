@@ -99,10 +99,17 @@ vendor/bin/sail ps
 2. Si Docker Desktop está corriendo pero sigue el error, verifica la configuración:
 
    - Abre Docker Desktop y ve a **Settings** (⚙️)
-   - En la sección **General**, asegúrate de que **"Use the WSL 2 based engine"** esté activada
+   - En la sección **General**, asegúrate de que **"Use the WSL 2 based engine"** esté activada:
+
+     ![Docker Desktop - General](./assets/screenshot-docker-1.png)
+
    - En la sección **Resources → WSL Integration**:
+
      - Activa **"Enable integration with my default WSL distro"**
      - Activa **Ubuntu** en la lista de distribuciones disponibles
+
+     ![Docker Desktop - WSL Integration](./assets/screenshot-docker-2.png)
+
    - Aplica los cambios y reinicia Docker Desktop
 
 3. Vuelve a intentar ejecutar Sail desde Git Bash:
