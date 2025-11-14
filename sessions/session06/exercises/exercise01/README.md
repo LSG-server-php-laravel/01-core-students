@@ -2,11 +2,11 @@
 
 Utiliza Laravel Sail y las herramientas vistas en la sesión para realizar este ejercicio.
 
-## Objetivo
+## 🎯 Objetivo
 
 Preparar el entorno de desarrollo de una API REST con Laravel Sail, configurar la base de datos y crear dos rutas simples de prueba.
 
-## Requisitos
+## 📐 Requisitos
 
 - Crear un proyecto Laravel funcional llamado **bookhaven-api**
 - Configurar Docker con Laravel Sail
