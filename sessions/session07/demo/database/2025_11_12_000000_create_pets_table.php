@@ -32,10 +32,6 @@ return new class extends Migration
                   ->constrained('users')
                   ->nullOnDelete();
 
-            // Índices útiles para consultas por especie/estado
-            $table->index('species');
-            $table->index('status');
-
             $table->timestamps();
         });
     }

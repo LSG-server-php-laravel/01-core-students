@@ -21,7 +21,7 @@ Definir el esquema inicial de la base de datos creando la tabla `pets` con:
 ### 1. Crear la migración de `pets`
 
 ```bash
-./vendor/bin/sail artisan make:migration create_pets_table --create=pets
+./vendor/bin/sail artisan make:migration create_pets_table
 ```
 
 ### 2. Pegar el contenido de la migración
@@ -45,9 +45,29 @@ database/migrations/XXXX_XX_XX_XXXXXX_create_pets_table.php
 ./vendor/bin/sail artisan migrate:status
 ```
 
-### 5. Rollback (si hace falta)
+Muestra qué migraciones se han ejecutado y cuáles están pendientes.
+
+### 5. Refrescar la BBDD (solo desarrollo)
+
+```bash
+./vendor/bin/sail artisan migrate:fresh
+```
+
+> ⚠️ **Cuidado:** Este comando **borra todas las tablas** y ejecuta las migraciones desde cero. Úsalo solo en desarrollo local cuando necesites resetear la BD completamente.
+
+Si además quieres poblar datos de prueba:
+
+```bash
+./vendor/bin/sail artisan migrate:fresh --seed
+```
+
+### 6. Rollback (revertir migraciones)
+
+Para deshacer la última migración (o batch de migraciones):
 
 ```bash
 ./vendor/bin/sail artisan migrate:rollback
 ./vendor/bin/sail artisan migrate
 ```
+
+> 💡 **Tip:** En producción, evita usar `rollback` y `fresh`. En su lugar, crea nuevas migraciones que modifiquen el esquema de forma segura (añadir columnas, índices, etc.).
