@@ -10,6 +10,10 @@ Definir el esquema inicial de la base de datos creando la tabla `pets` con:
 - Sin índices adicionales
 - Migraciones ejecutadas con Laravel Sail
 
+### 📖 Documentación oficial
+
+https://laravel.com/docs/12.x/migrations
+
 ## 📌 Requisitos
 
 - Docker + Docker Compose v2
