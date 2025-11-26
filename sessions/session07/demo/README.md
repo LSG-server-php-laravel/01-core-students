@@ -12,7 +12,7 @@ Definir el esquema inicial de la base de datos creando la tabla `pets` con:
 
 ### 📖 Documentación oficial
 
-https://laravel.com/docs/12.x/migrations
+<https://laravel.com/docs/12.x/migrations>
 
 ## 📌 Requisitos
 
