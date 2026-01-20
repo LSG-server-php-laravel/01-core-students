@@ -8,10 +8,6 @@ class UpdatePetRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        if ($this->user() === null) {
-            return false;
-        }
-
         /** @var Pet|null $pet */
         $pet = $this->route('pet');
 
