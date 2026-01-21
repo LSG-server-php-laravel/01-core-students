@@ -9,3 +9,5 @@
 - [Session 08](./sessions/session08)
 - [Session 09](./sessions/session09)
 - [Session 10](./sessions/session10)
+- [Session 11](./sessions/session11)
+- [Session 12](./sessions/session12)
