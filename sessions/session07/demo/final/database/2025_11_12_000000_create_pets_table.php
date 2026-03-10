@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
 
-            // Campos de dominio básicos (sin relaciones todavía)
+            // Campos de dominio básicos
             $table->string('name', 120);
             $table->string('species', 50); // e.g., dog, cat, rabbit...
             $table->unsignedTinyInteger('age')->nullable(); // años aproximados
             $table->enum('status', ['available', 'pending', 'adopted'])->default('available');
             $table->text('description')->nullable();
 
-            // Relaciones (foreign keys opcionales)
+            // Relaciones
             $table->foreignId('created_by')
                   ->nullable()
                   ->constrained('users')

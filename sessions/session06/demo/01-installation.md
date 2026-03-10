@@ -6,6 +6,15 @@ Documentación oficial: <https://laravel.com/docs/12.x/installation>
 
 Comando alternativo a `laravel new my-project`:
 
+- Sin php en local (**recomendado**)
+
+```bash
+docker run --rm -v $(pwd):/app -w /app composer create-project laravel/laravel my-project
+cd my-project
+```
+
+- Con php en local (debes asegurarte de tener la última versión)
+
 ```bash
 composer create-project laravel/laravel my-project
 cd my-project
@@ -19,31 +28,29 @@ Documentación oficial: <https://laravel.com/docs/12.x/sail>
 
 ### Instalación de Sail
 
+- Sin php en local (**recomendado**)
+
+```bash
+docker run --rm -v $(pwd):/app -w /app composer require laravel/sail --dev
+docker run --rm -it -v "$(pwd):/app" -w /app laravelsail/php84-composer:latest php artisan sail:install
+```
+
+- Con php en local (debes asegurarte de tener la última versión)
+
 ```bash
 composer require laravel/sail --dev
-php artisan sail:install --with=mysql,redis,mailpit,selenium
+php artisan sail:install
 ```
 
 ### Selección de servicios
 
-Si ejecutas la instalación sin el flag `--with` te preguntará qué servicios deseas instalar:
+Cuando ejecutes la instalación te preguntará qué servicios deseas instalar:
 
 ```text
-Which services would you like to install? [mysql]:
-[0] mysql
-[1] pgsql
-[2] mariadb
-[3] redis
-[4] memcached
-[5] meilisearch
-[6] minio
-[7] mailpit
-[8] selenium
+Which services would you like to install?
 ```
 
-Selecciona los servicios que necesites, para estas demostraciones usaremos:
-
-**MySQL, Redis, Mailpit y Selenium** (pon los números separados por comas: `0,3,7,8`)
+Selecciona los servicios que necesites, para estas demostraciones usaremos: **MySQL, MongoDB y Mailpit**
 
 ### Ejecución de Sail
 
