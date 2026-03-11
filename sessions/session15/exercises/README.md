@@ -92,6 +92,8 @@ Si el valor está fuera de ese rango:
 
 #### 2️⃣ `created`
 
+Crea un campo nuevo llamado `reviews_count`.
+
 Cuando se crea una reseña:
 
 - debe actualizarse el campo `reviews_count` del libro correspondiente.
