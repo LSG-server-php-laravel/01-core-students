@@ -1,8 +1,8 @@
-# PetRescue API — Demo (Seeders sin Factories)
+# PetRescue API — Demo (Seeders)
 
 ## 🎯 Objetivo
 
-Introducir el uso de **Seeders** para poblar la base de datos con **datos controlados y significativos**, sin usar todavía **Factories** ni generación automática.
+Introducir el uso de **Seeders** para poblar la base de datos con **datos controlados y significativos**.
 
 El objetivo es disponer de datos reales y comprensibles para:
 
